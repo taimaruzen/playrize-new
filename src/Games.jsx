@@ -53,7 +53,7 @@ return (
               setVisibleCount(50);
             }}
           >
-            <option value="">ALL Category</option>
+            <option value="">ALL CATEGORY</option>
 
             {[...new Set(games.map((game) => game.category))]
               .filter(Boolean)
