@@ -1,23 +1,26 @@
 import fs from "fs";
 
-const urls = [
-  "https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=mobile&popularity=newest&company=All&amount=All",
-  "https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=mobile&popularity=mostplayed&company=All&amount=All",
-  "https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=mobile&popularity=bestgames&company=All&amount=All",
-  "https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=mobile&popularity=branding&company=All&amount=All",
-];
-
-let allGames = [];
-
-for (const url of urls) {
-  const response = await fetch(url);
-  const games = await response.json();
-
-  allGames.push(...games);
-}
-fs.writeFileSync(
-  "./public/games.json",
-  JSON.stringify(allGames, null, 2)
+// PlaygamaのJSONを読み込む
+const playgamaData = JSON.parse(
+  fs.readFileSync("./public/games.json", "utf-8")
 );
 
-console.log("ゲーム一覧を保存しました！");
+const convertedGames = playgamaData.segments[0].hits.map((game) => {
+  return {
+    id: game.id,
+    title: game.title,
+    url: game.gameURL,
+    category: game.genres[0],
+    thumb: game.images[0],
+    video: game.videos?.[0]?.playgama_id
+    ? `https://static.playgama.com/p-video/${game.videos[0].playgama_id}/orig_length_h320.mp4`
+    : null,
+  };
+});
+
+fs.writeFileSync(
+  "./public/games.json",
+  JSON.stringify(convertedGames, null, 2)
+);
+
+console.log("Playgamaのゲーム一覧を保存しました！");

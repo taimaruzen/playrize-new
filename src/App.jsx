@@ -15,6 +15,33 @@ function App() {
   location.pathname.startsWith("/play/") ||
   location.pathname === "/signup" ||
   location.pathname === "/signup/email";
+
+  const shareToX = () => {
+  const text =
+    "PLAYRIZEで無料オンラインゲームを遊ぼう！\nゲームが遊ばれるほど、ショップの商品がお得に！";
+
+  const url = "https://playrize.net";
+
+  // Xアプリ用
+  const appUrl =
+    `twitter://post?message=${encodeURIComponent(
+      text + "\n" + url
+    )}`;
+
+  // ブラウザ版X
+  const webUrl =
+    `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      text
+    )}&url=${encodeURIComponent(url)}`;
+
+  // まずXアプリを開いてみる
+  window.location.href = appUrl;
+
+  // アプリが開かなかった場合
+  setTimeout(() => {
+    window.location.href = webUrl;
+  }, 1500);
+};
   
   
   // メニューが開いているかを記憶
@@ -62,27 +89,69 @@ function App() {
           )}
       
 
-       {!hideHeader && <hr className="border1" />}
       </div>
 
 
-          {location.pathname === "/" &&(
-            <div className="home-main">
-              <h1>PLAYRIZE</h1>
+        {location.pathname === "/" && (
+          <div className="home-main">
 
-              <p className="home-sub">
-                PLAY. SHARE. RISE.
-              </p>
+            <div className="home-badge">
+              PLAY • SHARE • RISE
+            </div>
 
-              <p className="home-text">
-                ゲームを遊んで、シェアして、楽しもう。
-              </p>
+            <h1>
+              PLAY<span>RIZE</span>
+            </h1>
 
+            <p className="home-sub">
+              YOUR NEXT GAME STARTS HERE
+            </p>
+            
+            <p className="home-text">
+              無料オンラインゲームを、すぐに楽しもう。
+              <br />
+              ゲームが遊ばれるほど、ショップの商品がお得に。
+            </p>
+
+            <div className="home-buttons">
               <Link to="/games" className="home-button">
                 PLAY GAME
+                <span>→</span>
               </Link>
-            </div> 
-          )}
+
+              <a href="https://shop.playrize.net" className="home-shop-button">
+                SHOP
+              </a>
+            </div>
+
+            <div className="home-scroll">
+              <span>SCROLL</span>
+              <div className="scroll-line"></div>
+            </div>
+
+          </div>
+        )}
+
+        {location.pathname === "/" && (
+        <footer className="footer">
+          <div className="footer-logo">
+            <img src="logo.png" alt="PLAYRIZE" />
+            <span>PLAYRIZE</span>
+          </div>
+
+         <button
+            className="x-share"
+            onClick={shareToX}
+          >
+            <img
+              src="x-logo.png"
+              alt="Xでシェア"
+            />
+          </button>
+          
+
+        </footer>
+        )}
       
       <Routes>
         <Route path="/games" element={<Games />} />

@@ -40,7 +40,7 @@ return (
       <input
         className="kensaku"
         type="text"
-        placeholder="Search the game..."
+        placeholder="🔎Search the game..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
@@ -49,34 +49,34 @@ return (
             className="category-select"
             value={category}
             onChange={(e) => {
-                setCategory(e.target.value);
-                setVisibleCount(50);
-              }}
+              setCategory(e.target.value);
+              setVisibleCount(50);
+            }}
           >
             <option value="">ALL Category</option>
-            <option value=".IO">.IO</option>
-            <option value="2 Player">2 Player</option>
-            <option value="3D">3D</option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Arcade">Arcade</option>
-            <option value="Bejeweled">Bejeweled</option>
-            <option value="Boys">Boys</option>
-            <option value="Clicker">Clicker</option>
-            <option value="Cooking">Cooking</option>
-            <option value="Fighting">Fighting</option>
-            <option value="Girls">Girls</option>
-            <option value="Hypercasual">Hypercasual</option>
-            <option value="Multiplayer">Multiplayer</option>
-            <option value="Puzzles">Puzzles</option>
-            <option value="Racing">Racing</option>
-            <option value="Shooting">Shooting</option>
-            <option value="Soccer">Soccer</option>
-            <option value="Sports">Sports</option>
+
+            {[...new Set(games.map((game) => game.category))]
+              .filter(Boolean)
+              .sort()
+              .map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
           </select>
     </div> 
+    
 
     <div className="games-list" >
+      <div className="menubar">
+          <video
+            src="Video Project 2.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+      </div>
       {games
   .filter((game) =>
     game.title.toLowerCase().includes(search.toLowerCase())
@@ -88,7 +88,36 @@ return (
         .map((game) => (
           <div className="game-card" key={game.id}>
             <Link to={`/play/${game.id}`}>
-              <img src={game.thumb} alt={game.title} />
+              <div
+                className="game-preview"
+                onMouseEnter={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+
+                  if (video && game.video) {
+                    video.play();
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const video = e.currentTarget.querySelector("video");
+
+                  if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                  }
+                }}
+              >
+                <img src={game.thumb} alt={game.title} />
+
+                {game.video && (
+                  <video
+                    src={game.video}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                  />
+                )}
+              </div>
             </Link>
 
             <Link to={`/play/${game.id}`}>
