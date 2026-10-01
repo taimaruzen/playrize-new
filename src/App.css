@@ -6,8 +6,6 @@ html,
 body,
 #root {
     margin: 0;
-    padding: 0;
-    background-color: #07248a;
     color: white;
     scrollbar-width: none;
     font-family: Arial, sans-serif;
@@ -619,6 +617,7 @@ body::-webkit-scrollbar,
   display: block;
   width: 100vw;
   height: 100vh;
+ 
 }
 
 /* =========================
