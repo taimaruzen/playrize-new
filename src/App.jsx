@@ -1,6 +1,6 @@
 import Hgbt from "./Hgbt.jsx";
 import Games from "./Games";
-import Play from "./Play.jsx";
+
 import MyPage from "./MyPage.jsx";
 import Signup from "./Signup.jsx";
 import EmailSignup from "./EmailSignup";
@@ -155,7 +155,7 @@ function App() {
       
       <Routes>
         <Route path="/games" element={<Games />} />
-        <Route path="/play/:id" element={<Play />} />
+        
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signup/email" element={<EmailSignup />} />

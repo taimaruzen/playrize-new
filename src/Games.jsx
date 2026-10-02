@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
-
 
 function Games() {
   const [games, setGames] = useState([]);
@@ -9,6 +6,7 @@ function Games() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
 
+  // games.jsonからゲーム一覧を取得
   useEffect(() => {
     fetch("/games.json")
       .then((response) => response.json())
@@ -17,6 +15,7 @@ function Games() {
       });
   }, []);
 
+  // 下までスクロールしたら50件追加
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -34,41 +33,40 @@ function Games() {
     };
   }, []);
 
-return (
-  <>
-    <div className="game-controls">
-      <input
-        className="kensaku"
-        type="text"
-        placeholder="🔎Search the game..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      
-          <select
-            className="category-select"
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-              setVisibleCount(50);
-            }}
-          >
-            <option value="">ALL CATEGORY</option>
+  return (
+    <>
+      <div className="game-controls">
+        <input
+          className="kensaku"
+          type="text"
+          placeholder="🔎Search the game..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-            {[...new Set(games.map((game) => game.category))]
-              .filter(Boolean)
-              .sort()
-              .map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-          </select>
-    </div> 
-    
+        <select
+          className="category-select"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+            setVisibleCount(50);
+          }}
+        >
+          <option value="">ALL CATEGORY</option>
 
-    <div className="games-list" >
-      <div className="menubar">
+          {[...new Set(games.map((game) => game.category))]
+            .filter(Boolean)
+            .sort()
+            .map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+        </select>
+      </div>
+
+      <div className="games-list">
+        <div className="menubar">
           <video
             src="Video Project 2.mp4"
             autoPlay
@@ -76,57 +74,65 @@ return (
             loop
             playsInline
           />
-      </div>
-      {games
-  .filter((game) =>
-    game.title.toLowerCase().includes(search.toLowerCase())
-  )
-  .filter((game) =>
-    category === "" || game.category === category
-  )
-  .slice(0, visibleCount)
-        .map((game) => (
-          <div className="game-card" key={game.id}>
-            <Link to={`/play/${game.id}`}>
-              <div
-                className="game-preview"
-                onMouseEnter={(e) => {
-                  const video = e.currentTarget.querySelector("video");
+        </div>
 
-                  if (video && game.video) {
-                    video.play();
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const video = e.currentTarget.querySelector("video");
+        {games
+          .filter((game) =>
+            game.title.toLowerCase().includes(search.toLowerCase())
+          )
+          .filter((game) =>
+            category === "" || game.category === category
+          )
+          .slice(0, visibleCount)
+          .map((game) => (
+            <div className="game-card" key={game.id}>
 
-                  if (video) {
-                    video.pause();
-                    video.currentTime = 0;
-                  }
-                }}
-              >
-                <img src={game.thumb} alt={game.title} />
+              {/* PlaygamaのCLID付きURLを直接開く */}
+              <a href={game.url}>
+                <div
+                  className="game-preview"
 
-                {game.video && (
-                  <video
-                    src={game.video}
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
+                  onMouseEnter={(e) => {
+                    const video =
+                      e.currentTarget.querySelector("video");
+
+                    if (video && game.video) {
+                      video.play();
+                    }
+                  }}
+
+                  onMouseLeave={(e) => {
+                    const video =
+                      e.currentTarget.querySelector("video");
+
+                    if (video) {
+                      video.pause();
+                      video.currentTime = 0;
+                    }
+                  }}
+                >
+                  <img
+                    src={game.thumb}
+                    alt={game.title}
                   />
-                )}
-              </div>
-            </Link>
 
-            <Link to={`/play/${game.id}`}>
-            </Link>
-          </div>
-        ))}
-    </div>
-  </>
-);
+                  {game.video && (
+                    <video
+                      src={game.video}
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                    />
+                  )}
+                </div>
+              </a>
+
+            </div>
+          ))}
+      </div>
+    </>
+  );
 }
 
 export default Games;
