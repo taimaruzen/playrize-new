@@ -81,7 +81,7 @@ function App() {
             <div className="ngmenus-box">
               <nav className="ngmenus">
                 <Link to="/games" className="ng-menu">GAME</Link>
-                <a href="https://orenosaundo.base.shop"className="ng-menu">SHOP</a>
+                <a href="#"className="ng-menu">SHOP</a>
                 <Link to="/" className="ng-menu">HOME</Link>
       
               </nav>
