@@ -817,3 +817,103 @@ body::-webkit-scrollbar,
 /* =========================
    ゲームカテゴリー
 ========================= */
+/* Responsive viewport safety */
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .main-box {
+    padding: 6px;
+  }
+
+  .pr-header {
+    height: 48px;
+  }
+
+  .PLAYRIZE-logo {
+    width: 22px;
+    height: 22px;
+    left: 12px;
+  }
+
+  .pr-title {
+    left: 44px;
+    font-size: clamp(20px, 7vw, 30px);
+    white-space: nowrap;
+  }
+
+  .ngmenus-box {
+    margin: 8px 0;
+  }
+
+  .ngmenus {
+    gap: 12px;
+    padding: 10px 8px;
+  }
+
+  .ng-menu {
+    font-size: clamp(16px, 5vw, 20px);
+  }
+
+  .hg-but {
+    display: inline-flex;
+    right: 10px;
+  }
+
+  .home-main {
+    width: 100%;
+    padding: 24px 16px 80px;
+  }
+
+  .home-main h1 {
+    font-size: clamp(48px, 17vw, 80px);
+    letter-spacing: -3px;
+  }
+
+  .home-sub {
+    max-width: 100%;
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .home-text {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .home-buttons {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-button,
+  .home-shop-button {
+    justify-content: center;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .game-controls {
+    flex-wrap: wrap;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .kensaku,
+  .category-select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .games-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
