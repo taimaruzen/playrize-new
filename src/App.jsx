@@ -4,6 +4,7 @@ import Games from "./Games";
 import MyPage from "./MyPage.jsx";
 import Signup from "./Signup.jsx";
 import EmailSignup from "./EmailSignup";
+import Shop from "./Shop.jsx";
 import "./App.css";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
@@ -81,7 +82,7 @@ function App() {
             <div className="ngmenus-box">
               <nav className="ngmenus">
                 <Link to="/games" className="ng-menu">GAME</Link>
-                <a href="#"className="ng-menu">SHOP</a>
+                <Link to="/shop" className="ng-menu">SHOP</Link>
                 <Link to="/" className="ng-menu">HOME</Link>
       
               </nav>
@@ -155,6 +156,7 @@ function App() {
       
       <Routes>
         <Route path="/games" element={<Games />} />
+        <Route path="/shop" element={<Shop />} />
         
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signup" element={<Signup />} />
