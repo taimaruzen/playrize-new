@@ -119,7 +119,7 @@ function App() {
                 <span>→</span>
               </Link>
 
-              <a href="https://shop.playrize.net" className="home-shop-button">
+              <a href="#" className="home-shop-button">
                 SHOP
               </a>
             </div>
