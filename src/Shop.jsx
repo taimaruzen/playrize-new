@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Shop.css";
 
-const SHOP_API = "https://playrize-shop-apimisty-glade-fbee.tainosuke79.workers.dev/api/products";
+export const SHOP_API = "https://playrize-shop-apimisty-glade-fbee.tainosuke79.workers.dev/api/products";
 
 function Shop() {
   const [products, setProducts] = useState([]);
@@ -9,10 +10,7 @@ function Shop() {
 
   useEffect(() => {
     fetch(SHOP_API)
-      .then((response) => {
-        if (!response.ok) throw new Error("商品の取得に失敗しました");
-        return response.json();
-      })
+      .then((response) => { if (!response.ok) throw new Error(); return response.json(); })
       .then((data) => setProducts(data.products || []))
       .catch(() => setError("商品を読み込めませんでした。"));
   }, []);
@@ -24,13 +22,13 @@ function Shop() {
       {!error && products.length === 0 && <p>商品はまだありません。</p>}
       <div className="shop-products">
         {products.map((product) => (
-          <article className="shop-product-card" key={product.id}>
+          <Link className="shop-product-card" to={`/shop/${product.id}`} key={product.id} aria-label={`${product.name}の詳細を見る`}>
             <img src={SHOP_API.replace("/api/products", "") + product.image_url} alt={product.name} />
             <h2>{product.name}</h2>
             <p className="shop-product-price">¥{product.price.toLocaleString()}</p>
             <p>{product.description}</p>
             <p>{product.stock > 0 ? `在庫: ${product.stock}` : "売り切れ"}</p>
-          </article>
+          </Link>
         ))}
       </div>
     </main>
@@ -38,3 +36,4 @@ function Shop() {
 }
 
 export default Shop;
+
