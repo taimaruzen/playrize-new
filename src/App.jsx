@@ -5,6 +5,7 @@ import MyPage from "./MyPage.jsx";
 import Signup from "./Signup.jsx";
 import EmailSignup from "./EmailSignup";
 import Shop from "./Shop.jsx";
+import ShopDetail from "./ShopDetail.jsx";
 import "./App.css";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
@@ -157,6 +158,7 @@ function App() {
       <Routes>
         <Route path="/games" element={<Games />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ShopDetail />} />
         
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/signup" element={<Signup />} />
@@ -171,3 +173,5 @@ function App() {
 }
 
 export default App;
+
+
