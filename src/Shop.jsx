@@ -26,8 +26,6 @@ function Shop() {
             <img src={SHOP_API.replace("/api/products", "") + product.image_url} alt={product.name} />
             <h2>{product.name}</h2>
             <p className="shop-product-price">¥{product.price.toLocaleString()}</p>
-            <p>{product.description}</p>
-            <p>{product.stock > 0 ? `在庫: ${product.stock}` : "売り切れ"}</p>
           </Link>
         ))}
       </div>
@@ -36,4 +34,6 @@ function Shop() {
 }
 
 export default Shop;
+
+
 
