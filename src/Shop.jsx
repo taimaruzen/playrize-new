@@ -22,7 +22,7 @@ function Shop() {
       {!error && products.length === 0 && <p>商品はまだありません。</p>}
       <div className="shop-products">
         {products.map((product) => (
-          <Link className="shop-product-card" to={`/shop/${product.id}`} key={product.id} aria-label={`${product.name}の詳細を見る`}>
+          <Link className="shop-product-card" to={`/shop/${String(product.product_number || product.id).padStart(6, "0")}`} key={product.id} aria-label={`${product.name}の詳細を見る`}>
             <img src={SHOP_API.replace("/api/products", "") + product.image_url} alt={product.name} />
             <h2>{product.name}</h2>
             <p className="shop-product-price">¥{product.price.toLocaleString()}</p>
@@ -34,6 +34,7 @@ function Shop() {
 }
 
 export default Shop;
+
 
 
 
