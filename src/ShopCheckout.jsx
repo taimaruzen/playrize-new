@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import { SHOP_API } from "./Shop.jsx";
 import { quantityError } from "./shopQuantity.js";
 import "./Shop.css";
+import ShopAddressForm from "./ShopAddressForm.jsx";
+import { emptyAddress } from "./shopAddress.js";
 
 export default function ShopCheckout() {
   const [params] = useSearchParams();
@@ -11,6 +13,7 @@ export default function ShopCheckout() {
 }
 function CheckoutContent({ id, initialQuantity }) {
   const [quantity, setQuantity] = useState(/^[0-9]*$/.test(initialQuantity) ? initialQuantity : "");
+  const [address, setAddress] = useState(emptyAddress);
   const [product, setProduct] = useState(null);
   const [state, setState] = useState("loading");
   useEffect(() => {
@@ -57,8 +60,7 @@ function CheckoutContent({ id, initialQuantity }) {
           <label htmlFor="buyer-name">お名前</label><input id="buyer-name" autoComplete="name" maxLength={100} />
           <label htmlFor="buyer-email">メールアドレス</label><input id="buyer-email" type="email" autoComplete="email" maxLength={254} />
           <label htmlFor="buyer-phone">電話番号</label><input id="buyer-phone" type="tel" autoComplete="tel" maxLength={30} />
-          <label htmlFor="buyer-postal">郵便番号</label><input id="buyer-postal" autoComplete="postal-code" maxLength={12} />
-          <label htmlFor="buyer-address">お届け先住所</label><textarea id="buyer-address" autoComplete="street-address" rows={3} maxLength={500} />
+          <ShopAddressForm address={address} onChange={setAddress} />
           <button className="checkout-action" type="button" disabled>購入確定（準備中）</button>
         </form>
       </section>
