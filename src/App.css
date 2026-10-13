@@ -394,7 +394,7 @@ body::-webkit-scrollbar,
     align-items: center;
 
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 115px);
     right: 10px;
 
     gap: 5px;
@@ -716,7 +716,7 @@ body::-webkit-scrollbar,
     /* スマホのサイドメニュー */
 
     .side-menu {
-        top: calc(100% + 10px);
+        top: calc(100% + 80px);
         right: 10px;
     }
 
