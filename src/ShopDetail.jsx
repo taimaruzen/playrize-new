@@ -44,15 +44,17 @@ function ShopDetail() {
     <label htmlFor="shop-quantity">購入個数</label>
     <input
       id="shop-quantity"
-      type="number"
-      min="1"
-      step="1"
+      type="text"
+      inputMode="numeric"
+      pattern="[0-9]*"
       value={quantity}
       disabled={product.stock <= 0}
       aria-invalid={Boolean(quantityError)}
       aria-describedby={quantityError ? "shop-quantity-error" : undefined}
       onChange={(e) => {
-        setQuantity(e.target.value);
+        const next = e.target.value;
+        if (!/^[0-9]*$/.test(next)) return;
+        setQuantity(next);
         setQuantityError("");
       }}
     />
