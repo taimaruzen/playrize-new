@@ -653,8 +653,8 @@ body::-webkit-scrollbar,
 }
 
 .footer-logo img {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
 }
 
