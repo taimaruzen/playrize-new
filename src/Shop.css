@@ -96,10 +96,72 @@
 }
 
 .shop-back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  max-width: 100%;
   margin-bottom: 20px;
-  color: #111;
+  padding: 8px 20px 8px 8px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: #123629;
+  color: #fff;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(18, 54, 41, .16);
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
+
+.shop-back-link__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #c6ff83;
+  color: #123629;
+}
+
+.shop-back-link__icon svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .18s ease;
+}
+
+@media (hover: hover) {
+  .shop-back-link:hover {
+    background: #1c4b39;
+    box-shadow: 0 6px 18px rgba(18, 54, 41, .24);
+  }
+
+  .shop-back-link:hover svg {
+    transform: translateX(-2px);
+  }
+}
+
+.shop-back-link:focus-visible {
+  outline: 3px solid #123629;
+  outline-offset: 4px;
+}
+
+.shop-back-link:active {
+  background: #0b271d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-back-link,
+  .shop-back-link__icon svg {
+    transition: none;
+  }
+
+  .shop-back-link:hover svg {
+    transform: none;
+  }
 }
 
 .shop-detail-card {
