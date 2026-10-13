@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { SHOP_API } from "./Shop.jsx";
 import { quantityError } from "./shopQuantity.js";
 import "./Shop.css";
@@ -42,7 +42,6 @@ function CheckoutContent({ id, initialQuantity }) {
   const total = product && !error ? product.price * Number(quantity) : null;
   const money = value => "¥" + value.toLocaleString("ja-JP");
   return <main className="shop-page shop-detail checkout-page">
-    <Link className="shop-back-link" to={/^[1-9][0-9]{5}$/.test(id) ? "/shop/" + id : "/shop"}>← 商品詳細に戻る</Link>
     <p className="checkout-eyebrow">PLAYRIZE SHOP</p><h1>購入内容の確認</h1>
     <p>決済機能は準備中です。入力情報は送信・保存されません。</p>
     {state !== "ready" && <p role="status">{state === "loading" ? "最新の商品情報を取得しています…" : state === "invalid" ? "商品IDが無効です。商品詳細からお進みください。" : state === "missing" ? "商品が見つかりません。" : "商品情報を取得できませんでした。時間をおいて再読み込みしてください。"}</p>}
