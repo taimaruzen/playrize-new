@@ -835,6 +835,7 @@ body,
 
   .pr-header {
     height: 48px;
+    z-index: 20;
   }
 
   .PLAYRIZE-logo {
