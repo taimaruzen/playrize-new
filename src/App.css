@@ -412,6 +412,20 @@ body::-webkit-scrollbar,
 }
 
 
+/* ヘッダーのメニューをナビゲーションより前面に表示 */
+.pr-header {
+    z-index: 1000;
+}
+
+.ngmenus-box {
+    position: relative;
+    z-index: 0;
+}
+
+.side-menu {
+    z-index: 1001;
+}
+
 /* Reactでopenが付いたとき表示 */
 
 .side-menu.open {
@@ -835,7 +849,7 @@ body,
 
   .pr-header {
     height: 48px;
-    z-index: 20;
+    z-index: 1000;
   }
 
   .PLAYRIZE-logo {
