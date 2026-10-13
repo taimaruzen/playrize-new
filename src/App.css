@@ -394,7 +394,7 @@ body::-webkit-scrollbar,
     align-items: center;
 
     position: absolute;
-    top: calc(100% + 115px);
+    top: 70px;
     right: 10px;
 
     gap: 5px;
@@ -402,6 +402,9 @@ body::-webkit-scrollbar,
     padding: 10px;
 
     background-color: #c6c6c6;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 
     border-radius: 5px;
 
@@ -716,7 +719,7 @@ body::-webkit-scrollbar,
     /* スマホのサイドメニュー */
 
     .side-menu {
-        top: calc(100% + 80px);
+        top: 50px;
         right: 10px;
     }
 
