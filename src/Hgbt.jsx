@@ -29,11 +29,6 @@ function Hgbt() {
         className={`side-menu ${menuOpen ? "open" : ""}`}
         onClick={(event) => event.stopPropagation()}
       >
-        <a href="index.html" className="side-menutitle">HOME</a>
-        <Link to="/mypage" className="side-menutitle">
-          MY PAGE
-        </Link>
-        <a href="#" className="side-menutitle">RANKING</a>
         <a href="#" className="side-menutitle">Language</a>
       </nav>
 
